@@ -21,9 +21,7 @@ return {
   {
     "zbirenbaum/copilot-cmp",
     dependencies = "copilot.lua",
-    config = function()
-      require("copilot_cmp").setup()
-    end,
+    config = function() require("copilot_cmp").setup() end,
   },
 
   -- nvim-cmp configuration to ensure Tab cycles through suggestions
@@ -37,14 +35,14 @@ return {
       "zbirenbaum/copilot-cmp", -- Ensure copilot-cmp is a dependency
     },
     opts = function(_, opts)
-      local cmp = require("cmp")
-      local luasnip = require("luasnip")
-      opts.mapping = cmp.mapping.preset.insert({
+      local cmp = require "cmp"
+      local luasnip = require "luasnip"
+      opts.mapping = cmp.mapping.preset.insert {
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.abort(),
-        ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ["<CR>"] = cmp.mapping.confirm { select = true }, -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
@@ -63,16 +61,16 @@ return {
             fallback()
           end
         end, { "i", "s" }),
-      })
+      }
 
       -- Set sources for completion
-      opts.sources = cmp.config.sources({
+      opts.sources = cmp.config.sources {
         { name = "copilot" }, -- Copilot source
         { name = "nvim_lsp" },
         { name = "luasnip" },
         { name = "buffer" },
         { name = "path" },
-      })
+      }
     end,
   },
 
@@ -91,8 +89,6 @@ return {
     event = "BufRead",
     config = function() require("lsp_signature").setup() end,
   },
-
-  
 
   -- == Examples of Overriding Plugins ==
 
@@ -113,7 +109,7 @@ return {
             "████   ██ ██    ██ ██ ████  ████",
             "██ ██  ██ ██    ██ ██ ██ ████ ██",
             "██  ██ ██  ██  ██  ██ ██  ██  ██",
-            "██   ████   ████   ██ ██      ██"
+            "██   ████   ████   ██ ██      ██",
           }, "\n"),
         },
       },
