@@ -138,6 +138,11 @@ return {
       local npairs = require "nvim-autopairs"
       local Rule = require "nvim-autopairs.rule"
       local cond = require "nvim-autopairs.conds"
+
+      npairs.setup {
+        check_ts = true,
+      }
+
       npairs.add_rules(
         {
           Rule("$", "$", { "tex", "latex" })
@@ -157,6 +162,13 @@ return {
         -- disable for .vim files, but it work for another filetypes
         Rule("a", "a", "-vim")
       )
+      Rule('"', '"', { "javascript", "typescript", "typescriptreact", "javascriptreact" }):with_pair(function(opts)
+        local line = opts.line
+        local col = opts.col
+        -- verifica se há aspas abrindo uma string com ${
+        local before = line:sub(1, col)
+        return before:find '"%${'
+      end):replace_endpair(function() return "`" end)
     end,
   },
 }
