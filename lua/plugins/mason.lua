@@ -12,9 +12,8 @@ return {
         -- install language servers
         "lua-language-server",
         "typescript-language-server",
-
-        -- install formatters
-        "stylua",
+        "eslint-lsp",
+        "eslint_d",
 
         -- install debuggers
         "debugpy",
