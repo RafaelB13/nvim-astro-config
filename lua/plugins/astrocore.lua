@@ -12,8 +12,39 @@ return {
   opts = {
     -- Add cmp sources for copilot
     cmp = {
+      mapping = {
+        ["<C-b>"] = function(...) require("cmp").mapping.scroll_docs(-4)(...) end,
+        ["<C-f>"] = function(...) require("cmp").mapping.scroll_docs(4)(...) end,
+        ["<C-Space>"] = function(...) require("cmp").mapping.complete()(...) end,
+        ["<C-e>"] = function(...) require("cmp").mapping.abort()(...) end,
+        ["<CR>"] = function(...) require("cmp").mapping.confirm { select = false }(...) end,
+        ["<Tab>"] = function(fallback)
+          local cmp = require "cmp"
+          if cmp.visible() then
+            cmp.select_next_item()
+          elseif require("luasnip").expand_or_jumpable() then
+            require("luasnip").expand_or_jump()
+          else
+            fallback()
+          end
+        end,
+        ["<S-Tab>"] = function(fallback)
+          local cmp = require "cmp"
+          if cmp.visible() then
+            cmp.select_prev_item()
+          elseif require("luasnip").jumpable(-1) then
+            require("luasnip").jump(-1)
+          else
+            fallback()
+          end
+        end,
+      },
       sources = {
-        { name = "copilot", group_index = 2 },
+        { name = "copilot" },
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+        { name = "buffer" },
+        { name = "path" },
       },
     },
     -- Configure core features of AstroNvim
