@@ -13,6 +13,10 @@ return {
           copy_session = { "i", "<C-Y>" },
         },
       },
+      session_should_save_fn = function()
+        if vim.bo.filetype == "NvimTree" then return false end
+        return true
+      end,
     }
   end,
 }
