@@ -68,6 +68,21 @@ return {
     },
   },
   {
+    "AstroNvim/astrolsp",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    ---@type AstroLSPOpts
+    opts = {
+      mappings = {
+        n = {
+          grr = {
+            function() require("telescope.builtin").lsp_references() end,
+            desc = "References of current symbol",
+          },
+        },
+      },
+    },
+  },
+  {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",
     config = function() require("lsp_signature").setup() end,
