@@ -1,6 +1,7 @@
 return {
   {
     "zbirenbaum/copilot.lua",
+    enabled = false,
     cmd = "Copilot",
     event = "VimEnter",
     config = function()
@@ -16,11 +17,13 @@ return {
   },
   {
     "zbirenbaum/copilot-cmp",
+    enabled = false,
     dependencies = "copilot.lua",
     config = function() require("copilot_cmp").setup() end,
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
+    enabled = false,
     dependencies = {
       "github/copilot.vim",
       "nvim-lua/plenary.nvim",

@@ -104,8 +104,16 @@ return {
     -- A custom `on_attach` function to be run after the default `on_attach` function
     -- takes two parameters `client` and `bufnr`  (`:h lspconfig-setup`)
     on_attach = function(client, bufnr)
-      -- this would disable semanticTokensProvider for all clients
-      -- client.server_capabilities.semanticTokensProvider = nil
+      if client.supports_method "textDocument/formatting" then
+        local augroup = vim.api.nvim_create_augroup("LspFormatOnSave", { clear = true })
+        vim.api.nvim_create_autocmd("BufWritePre", {
+          group = augroup,
+          buffer = bufnr,
+          callback = function()
+            vim.cmd "undojoin"
+          end,
+        })
+      end
     end,
   },
 }
