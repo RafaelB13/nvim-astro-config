@@ -169,4 +169,12 @@ return {
       end):replace_endpair(function() return "`" end)
     end,
   },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = {
+      document_symbols = {
+        follow_cursor = false,
+      },
+    },
+  },
 }
