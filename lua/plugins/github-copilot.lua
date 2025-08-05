@@ -1,7 +1,7 @@
 return {
   {
     "zbirenbaum/copilot.lua",
-    enabled = false,
+    enabled = true,
     cmd = "Copilot",
     event = "VimEnter",
     config = function()
@@ -17,7 +17,7 @@ return {
   },
   {
     "zbirenbaum/copilot-cmp",
-    enabled = false,
+    enabled = true,
     dependencies = "copilot.lua",
     config = function() require("copilot_cmp").setup() end,
   },
@@ -31,3 +31,4 @@ return {
     config = function() require("CopilotChat").setup() end,
   },
 }
+
